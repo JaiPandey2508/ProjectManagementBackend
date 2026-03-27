@@ -17,7 +17,7 @@ const getProjects = asyncHandler(async (req, res) => {
     {//second aggregation pipeline
       $lookup: {
         from: "projects",
-        localField: "projects",
+        localField: "project",
         foreignField: "_id",
         as: "projects",
         pipeline: [
@@ -25,7 +25,7 @@ const getProjects = asyncHandler(async (req, res) => {
             $lookup: {
               from: "projectmembers",
               localField: "_id",
-              foreignField: "projects",
+              foreignField: "project",
               as: "projectmembers"
             }
           },
